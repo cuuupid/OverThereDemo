@@ -471,10 +471,12 @@ function getReviews(x,placeTitle,placeSubtitle){
   },
   function(data) {
     var reviewData = [];
-   
+   var tempReview = "";
     if(data.result.reviews !==undefined){
     for(var i = 0;i<data.result.reviews.length;i++){
-      reviewData.unshift(data.result.reviews[i].text);
+      tempReview = data.result.reviews[i].text;
+      if(tempReview.length >= 1003){tempReview = tempReview.substring(0,1001)+"...";}
+      reviewData.unshift(tempReview);
       console.log(reviewData[i]);}
     }
     var processedReviews = [];
